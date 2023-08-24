@@ -1,6 +1,6 @@
 {
-  "name": "butlermock",
-  "version": "0.0.1",
+  "name": "@testing/butlermock",
+  "version": "0.0.2",
   "description": "Interface to JSON: Create mock data from typescript interfaces",
   "type": "module",
   "types": "dist/index.d.ts",
