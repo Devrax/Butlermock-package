@@ -1,10 +1,14 @@
 {
-  "name": "@testing/butlermock",
+  "name": "butlermock",
   "version": "0.0.1",
   "description": "Interface to JSON: Create mock data from typescript interfaces",
   "type": "module",
   "types": "dist/index.d.ts",
   "main": "dist/main.js",
+  "repository": {
+    "url": "https://github.com/Devrax/Butlermock-package",
+    "type": "git"
+  },
   "scripts": {
     "start": "ts-node src/index.ts"
   },
