@@ -112,7 +112,7 @@ export default class Interface2Mock {
                     const foundInterface = this.#interfacesCaptured[hashtype] ?? this.#typeCaptured[hashtype];
                     const recursiveValue = (t: string) => {
                         const val = this.#process(foundInterface);
-                        return t.includes('[]') ? new Array(rand(5)).fill(structuredClone(val)) : val
+                        return t.includes('[]') ? new Array(rand(5)).fill(JSON.parse(JSON.stringify(val))) : val
                     }
                     const value = checkIfThatInterfaceExist?.isProcess ? checkIfThatInterfaceExist.value : recursiveValue(deepTypeValid.type);
                     (obj.value as KeyValueObject<unknown>)[keyName] = deepTypeValid.type.includes('[]') ? Array.isArray(value) ? value : [value] : value;
@@ -122,7 +122,7 @@ export default class Interface2Mock {
             }
         }
         obj.isProcess = true;
-        return structuredClone(obj.value);
+        return JSON.parse(JSON.stringify(obj.value));
     }
 
     #findTypeValue(type: string) {

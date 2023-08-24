@@ -24,6 +24,7 @@ class Interface2Mock {
     }) {
         this.interfaceReferenceOrPath = interfaceReferenceOrPath;
         this.config = config;
+        this.interfaceReferenceOrPath = this.interfaceReferenceOrPath.replace(/\\;/g, "#SEMICOLON#").replace(/\\:/g, "#TWO_POINTS#");
         let interfacesAndTypes = this.interfaceReferenceOrPath;
         if (!config.rawInterface) {
             interfacesAndTypes = fs_1.default.readFileSync(this.interfaceReferenceOrPath, 'utf8');
@@ -93,8 +94,8 @@ class Interface2Mock {
         for (const member of splitEachMember) {
             if (member.match(/\[(.+)\]/g) || member.match(/\((.+)\)/g))
                 break;
-            let [keyName, ...typeValue] = member.split(':');
-            const type = typeValue == null ? (`${typeValue}`).toLocaleLowerCase() : typeValue.join('').trim();
+            let [keyName, ...typeValue] = member.replace('#SEMICOLON#', ';').split(':');
+            const type = typeValue == null ? (`${typeValue}`).toLocaleLowerCase() : typeValue.map(v => v.replace("#TWO_POINTS#", ':')).join('').trim();
             keyName = keyName.replace('?', '');
             const deepTypeValid = (0, typeValidation_1.typeValidation)(type);
             if (deepTypeValid.isNotCustom) {
