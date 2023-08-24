@@ -1,0 +1,32 @@
+{
+  "name": "@testing/butlermock",
+  "version": "0.0.1",
+  "description": "Interface to JSON: Create mock data from typescript interfaces",
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "Typescript to json online",
+    "typescript to JSON schema",
+    "mock data",
+    "TypeScript",
+    "JSON schema from interfaces",
+    "development with mock data",
+    "testing with mock data",
+    "interfaces to mock data",
+    "types to mock data",
+    "using Fakerjs for typescript interfaces"
+  ],
+  "author": "Rafael Alexander Mejia Blanco",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.5.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2"
+  }
+}
