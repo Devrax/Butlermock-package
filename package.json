@@ -2,11 +2,12 @@
   "name": "butlermock",
   "version": "0.0.2",
   "description": "Interface to JSON: Create mock data from typescript interfaces",
-  "type": "module",
+  "type": "commonjs",
   "types": "dist/index.d.ts",
   "main": "dist/main.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "test": "ts-node test/index.ts"
   },
   "keywords": [
     "Typescript to json online",

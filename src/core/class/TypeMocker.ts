@@ -21,11 +21,12 @@ export default class Interface2Mock {
         anyReturn: null,
         rawInterface: false
     }) {
-        this.interfaceReferenceOrPath = this.interfaceReferenceOrPath.replace(/\\;/g, "#SEMICOLON#").replace(/\\:/g, "#TWO_POINTS#");
         let interfacesAndTypes = this.interfaceReferenceOrPath;
         if(!config.rawInterface) {
             interfacesAndTypes = fs.readFileSync(this.interfaceReferenceOrPath, 'utf8');
         }
+
+        interfacesAndTypes = interfacesAndTypes.replace(/\\;/g, "#SEMICOLON#").replace(/\\:/g, "#TWO_POINTS#");
 
         this.#capturePrimitiveTypes(interfacesAndTypes);
         this.#captureStandardTypesAndInterfaces(interfacesAndTypes);
@@ -98,7 +99,6 @@ export default class Interface2Mock {
         for (const member of splitEachMember) {
 
             if(member.match(/\[(.+)\]/g) || member.match(/\((.+)\)/g)) break;
-
             let [keyName, ...typeValue] = member.replace('#SEMICOLON#', ';').split(':');
             const type = typeValue == null ? (`${typeValue}`).toLocaleLowerCase() : typeValue.map(v => v.replace("#TWO_POINTS#", ':')).join('').trim();
             keyName = keyName.replace('?', '');

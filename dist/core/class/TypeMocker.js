@@ -24,11 +24,11 @@ class Interface2Mock {
     }) {
         this.interfaceReferenceOrPath = interfaceReferenceOrPath;
         this.config = config;
-        this.interfaceReferenceOrPath = this.interfaceReferenceOrPath.replace(/\\;/g, "#SEMICOLON#").replace(/\\:/g, "#TWO_POINTS#");
         let interfacesAndTypes = this.interfaceReferenceOrPath;
         if (!config.rawInterface) {
             interfacesAndTypes = fs_1.default.readFileSync(this.interfaceReferenceOrPath, 'utf8');
         }
+        interfacesAndTypes = interfacesAndTypes.replace(/\\;/g, "#SEMICOLON#").replace(/\\:/g, "#TWO_POINTS#");
         this.#capturePrimitiveTypes(interfacesAndTypes);
         this.#captureStandardTypesAndInterfaces(interfacesAndTypes);
         if (Object.values(this.#interfacesCaptured).length === 0 && Object.values(this.#typeCaptured).length === 0)
