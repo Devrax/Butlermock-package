@@ -21,6 +21,7 @@ export default class Interface2Mock {
         anyReturn: null,
         rawInterface: false
     }) {
+        this.interfaceReferenceOrPath = this.interfaceReferenceOrPath.replace(/\\;/g, "#SEMICOLON#").replace(/\\:/g, "#TWO_POINTS#");
         let interfacesAndTypes = this.interfaceReferenceOrPath;
         if(!config.rawInterface) {
             interfacesAndTypes = fs.readFileSync(this.interfaceReferenceOrPath, 'utf8');
@@ -98,8 +99,8 @@ export default class Interface2Mock {
 
             if(member.match(/\[(.+)\]/g) || member.match(/\((.+)\)/g)) break;
 
-            let [keyName, ...typeValue] = member.split(':');
-            const type = typeValue == null ? (`${typeValue}`).toLocaleLowerCase() : typeValue.join('').trim();
+            let [keyName, ...typeValue] = member.replace('#SEMICOLON#', ';').split(':');
+            const type = typeValue == null ? (`${typeValue}`).toLocaleLowerCase() : typeValue.map(v => v.replace("#TWO_POINTS#", ':')).join('').trim();
             keyName = keyName.replace('?', '');
             const deepTypeValid = typeValidation(type);
             if (deepTypeValid.isNotCustom) {
@@ -145,7 +146,7 @@ export default class Interface2Mock {
         const iterateMockedInterface = (tsObj: KeyValueObject<TsObject<unknown>>) => Object.entries(tsObj).forEach(obj => this.#json[obj[0]] = obj[1].value);
         iterateMockedInterface(this.#interfacesCaptured);
         iterateMockedInterface(this.#typeCaptured);
-        return structuredClone(this.#json);
+        return JSON.parse(JSON.stringify(this.#json));
     }
 
 }

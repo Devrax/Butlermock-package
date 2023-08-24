@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Interface to JSON: Create mock data from typescript interfaces",
   "type": "module",
+  "types": "dist/index.d.ts",
   "main": "dist/main.js",
   "scripts": {
     "start": "ts-node src/index.ts"
