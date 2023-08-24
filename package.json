@@ -1,5 +1,5 @@
 {
-  "name": "@testing/butlermock",
+  "name": "butlermock",
   "version": "0.0.2",
   "description": "Interface to JSON: Create mock data from typescript interfaces",
   "type": "module",
